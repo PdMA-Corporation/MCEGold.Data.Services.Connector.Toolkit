@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/common/cli-fault.schema.json",
+  "title": "MCEGold CLI Fault",
+  "description": "Fault object emitted in a failed current MCEGold connector CLI envelope.",
+  "type": "object",
+  "properties": {
+    "category": { "type": "string" },
+    "code": { "type": "string" },
+    "message": { "type": "string" },
+    "statusCode": { "type": ["integer", "null"] },
+    "details": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": { "type": "string" },
+          "code": { "type": "string" },
+          "message": { "type": "string" }
+        },
+        "required": ["field", "code", "message"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["category", "code", "message", "statusCode", "details"],
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/request/preview-output.schema.json",
+  "title": "Request Preview Output",
+  "description": "Successful current CLI envelope for request preview. The bod value is the generated request BOD parsed as JSON.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "success": { "type": "boolean", "const": true },
+    "command": { "type": "string", "const": "request.preview" },
+    "timestampUtc": { "type": "string", "format": "date-time" },
+    "data": {
+      "type": "object",
+      "properties": {
+        "requestType": { "type": "string" },
+        "bod": {
+          "description": "Generated request body object from ConnectorRequestJsonBuilder.",
+          "type": ["object", "array", "string", "number", "integer", "boolean", "null"]
+        }
+      },
+      "required": ["requestType", "bod"],
+      "additionalProperties": false
+    },
+    "fault": { "type": "null" },
+    "raw": { "type": "null" }
+  },
+  "required": ["schemaVersion", "success", "command", "timestampUtc", "data", "fault", "raw"],
+  "additionalProperties": false
+}

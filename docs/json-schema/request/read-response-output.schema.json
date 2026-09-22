@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/request/read-response-output.schema.json",
+  "title": "Request Read Response Output",
+  "description": "Successful current CLI envelope for request read-response.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "success": { "type": "boolean", "const": true },
+    "command": { "type": "string", "const": "request.read-response" },
+    "timestampUtc": { "type": "string", "format": "date-time" },
+    "data": {
+      "type": "object",
+      "properties": {
+        "statusCode": { "type": "integer" },
+        "sessionId": { "type": "string" },
+        "requestMessageId": { "type": "string" },
+        "responseMessageId": { "type": "string" },
+        "payload": {}
+      },
+      "required": ["statusCode", "sessionId", "requestMessageId", "responseMessageId", "payload"],
+      "additionalProperties": false
+    },
+    "fault": { "type": "null" },
+    "raw": { "$ref": "../common/raw-response.schema.json" }
+  },
+  "required": ["schemaVersion", "success", "command", "timestampUtc", "data", "fault", "raw"],
+  "additionalProperties": false
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/publication/remove-publication-output.schema.json",
+  "title": "Publication Remove Output",
+  "description": "Successful current CLI envelope for publication remove.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "success": { "type": "boolean", "const": true },
+    "command": { "type": "string", "const": "publication.remove" },
+    "timestampUtc": { "type": "string", "format": "date-time" },
+    "data": {
+      "type": "object",
+      "properties": {
+        "statusCode": { "type": "integer" },
+        "sessionId": { "type": "string" },
+        "removed": { "type": "boolean", "const": true }
+      },
+      "required": ["statusCode", "sessionId", "removed"],
+      "additionalProperties": false
+    },
+    "fault": { "type": "null" },
+    "raw": { "$ref": "../common/raw-response.schema.json" }
+  },
+  "required": ["schemaVersion", "success", "command", "timestampUtc", "data", "fault", "raw"],
+  "additionalProperties": false
+}

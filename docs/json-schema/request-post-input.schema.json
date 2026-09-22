@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/request-post-input.schema.json",
+  "title": "Request Post Input",
+  "description": "Short-form JSON input file accepted by request preview, request run, and staged request post.",
+  "type": "object",
+  "properties": {
+    "requestType": {
+      "type": "string",
+      "enum": [
+        "GetSites",
+        "GetSegments",
+        "GetAssets",
+        "GetMeasurementLocations",
+        "GetMeasurements",
+        "GetAssessments",
+        "GetAssetSegmentEvents"
+      ]
+    },
+    "payloadProfile": {
+      "type": ["string", "null"],
+      "enum": ["Full", "Minimal", null]
+    },
+    "maxItems": { "type": ["integer", "null"], "minimum": 0, "maximum": 32767 },
+    "lastNData": { "type": ["integer", "null"], "minimum": 0, "maximum": 32767 },
+    "filters": {
+      "type": "object",
+      "properties": {
+        "assetUuid": { "type": "string" },
+        "measurementLocationUuid": { "type": "string" },
+        "siteUuid": { "type": "string" },
+        "segmentUuid": { "type": "string" },
+        "typeUuid": { "type": "string" },
+        "serialNumber": { "type": "string" },
+        "recordedFrom": { "type": "string" },
+        "recordedTo": { "type": "string" },
+        "healthLevelTypeUuid": { "type": "string" },
+        "assessedFrom": { "type": "string" },
+        "assessedTo": { "type": "string" },
+        "healthLevelMin": { "type": ["number", "null"] },
+        "healthLevelMax": { "type": ["number", "null"] },
+        "eventUuid": { "type": "string" },
+        "installedNow": { "type": ["boolean", "null"] },
+        "installedFrom": { "type": "string" },
+        "installedTo": { "type": "string" },
+        "removedFrom": { "type": "string" },
+        "removedTo": { "type": "string" }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "required": ["requestType"],
+  "additionalProperties": false
+}

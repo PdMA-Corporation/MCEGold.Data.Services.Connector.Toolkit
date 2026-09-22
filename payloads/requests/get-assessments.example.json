@@ -1,0 +1,14 @@
+{
+  "requestType": "GetAssessments",
+  "payloadProfile": "Full",
+  "maxItems": 50,
+  "lastNData": 5,
+  "filters": {
+    "assetUuid": "44444444-4444-4444-8444-444444444444",
+    "healthLevelTypeUuid": "66666666-6666-4666-8666-666666666666",
+    "assessedFrom": "2026-01-01T00:00:00Z",
+    "assessedTo": "2026-01-31T23:59:59Z",
+    "healthLevelMin": 0.0,
+    "healthLevelMax": 100.0
+  }
+}

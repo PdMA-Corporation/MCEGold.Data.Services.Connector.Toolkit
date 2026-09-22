@@ -1,0 +1,18 @@
+{
+  "requestType": "GetAssetSegmentEvents",
+  "payloadProfile": "Full",
+  "maxItems": 50,
+  "lastNData": 10,
+  "filters": {
+    "eventUuid": "77777777-7777-4777-8777-777777777777",
+    "siteUuid": "11111111-1111-4111-8111-111111111111",
+    "segmentUuid": "22222222-2222-4222-8222-222222222222",
+    "assetUuid": "44444444-4444-4444-8444-444444444444",
+    "serialNumber": "DEMO-ASSET-001",
+    "installedNow": true,
+    "installedFrom": "2026-01-01T00:00:00Z",
+    "installedTo": "2026-01-31T23:59:59Z",
+    "removedFrom": "2026-02-01T00:00:00Z",
+    "removedTo": "2026-02-28T23:59:59Z"
+  }
+}

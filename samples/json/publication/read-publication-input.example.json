@@ -1,0 +1,10 @@
+{
+  "command": "ReadPublication",
+  "host": "https://example.invalid/connector/1.0",
+  "authenticationScheme": "BasicApi",
+  "apiKey": "replace-with-api-key",
+  "userName": "replace-with-user-name",
+  "password": "replace-with-password",
+  "sessionId": "00000000-0000-0000-0000-000000000000",
+  "includeRawResponse": false
+}

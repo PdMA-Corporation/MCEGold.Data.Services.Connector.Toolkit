@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/request/post-request-input.schema.json",
+  "title": "Request Post Input",
+  "description": "Short JSON input for posting a consumer request through ConnectorCommandRunner.RunJson or RunJsonAsync.",
+  "type": "object",
+  "properties": {
+    "command": {
+      "description": "Dispatch command for this short JSON input contract.",
+      "type": "string",
+      "const": "PostRequest"
+    },
+    "host": {
+      "description": "Absolute HTTPS connector endpoint URI.",
+      "type": "string",
+      "format": "uri"
+    },
+    "authenticationScheme": {
+      "description": "Connector authentication scheme.",
+      "type": "string",
+      "enum": ["Basic", "BasicApi"]
+    },
+    "apiKey": {
+      "description": "API key used with BasicApi authentication.",
+      "type": "string"
+    },
+    "userName": {
+      "description": "Connector user name.",
+      "type": "string"
+    },
+    "password": {
+      "description": "Connector password.",
+      "type": "string"
+    },
+    "sessionId": {
+      "description": "Consumer request session ID returned by OpenRequestSession.",
+      "type": "string",
+      "minLength": 1
+    },
+    "requestType": {
+      "description": "Consumer request type to post.",
+      "type": "string",
+      "enum": [
+        "GetSites",
+        "GetSegments",
+        "GetAssets",
+        "GetMeasurementLocations",
+        "GetMeasurements",
+        "GetAssessments",
+        "GetAssetSegmentEvents"
+      ]
+    },
+    "payloadProfile": {
+      "description": "Optional request payload profile.",
+      "type": ["string", "null"],
+      "enum": ["Full", "Minimal", null]
+    },
+    "maxItems": {
+      "description": "Optional maximum item count.",
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 32767
+    },
+    "lastNData": {
+      "description": "Optional last-N data count.",
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 32767
+    },
+    "filters": {
+      "description": "Optional request filters validated against the selected requestType.",
+      "type": "object",
+      "properties": {
+        "assetUuid": { "type": "string" },
+        "measurementLocationUuid": { "type": "string" },
+        "siteUuid": { "type": "string" },
+        "segmentUuid": { "type": "string" },
+        "typeUuid": { "type": "string" },
+        "serialNumber": { "type": "string" },
+        "recordedFrom": { "type": "string" },
+        "recordedTo": { "type": "string" },
+        "healthLevelTypeUuid": { "type": "string" },
+        "assessedFrom": { "type": "string" },
+        "assessedTo": { "type": "string" },
+        "healthLevelMin": { "type": ["number", "null"] },
+        "healthLevelMax": { "type": ["number", "null"] },
+        "eventUuid": { "type": "string" },
+        "installedNow": { "type": ["boolean", "null"] },
+        "installedFrom": { "type": "string" },
+        "installedTo": { "type": "string" },
+        "removedFrom": { "type": "string" },
+        "removedTo": { "type": "string" }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "includeRawResponse": {
+      "description": "Whether to include the raw connector response in command output.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "command",
+    "host",
+    "userName",
+    "password",
+    "sessionId",
+    "requestType",
+    "includeRawResponse"
+  ],
+  "additionalProperties": false
+}

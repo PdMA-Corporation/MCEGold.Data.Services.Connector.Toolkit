@@ -1,0 +1,16 @@
+{
+  "host": "https://your-server/connector/1.0",
+  "authenticationScheme": "BasicApi",
+  "apiKey": "",
+  "userName": "",
+  "password": "",
+  "publication": {
+    "channel": "/YourOrganization/Publication",
+    "payloadProfile": "Full"
+  },
+  "request": {
+    "channel": "/YourOrganization/Request",
+    "readResponse": true,
+    "removeResponseOnSuccess": true
+  }
+}

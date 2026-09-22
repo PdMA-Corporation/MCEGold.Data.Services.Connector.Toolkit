@@ -1,0 +1,12 @@
+{
+  "requestType": "GetMeasurements",
+  "payloadProfile": "Full",
+  "maxItems": 100,
+  "lastNData": 10,
+  "filters": {
+    "measurementLocationUuid": "55555555-5555-4555-8555-555555555555",
+    "segmentUuid": "22222222-2222-4222-8222-222222222222",
+    "recordedFrom": "2026-01-01T00:00:00Z",
+    "recordedTo": "2026-01-02T00:00:00Z"
+  }
+}

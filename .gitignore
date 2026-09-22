@@ -1,0 +1,55 @@
+# Build and IDE output
+**/bin/
+**/obj/
+**/publish/
+.vs/
+**/.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Local configuration and secrets
+configs/connector.config.development.json
+samples/csharp/**/appsettings.Development.json
+appsettings.Development.json
+appsettings.Production.json
+appsettings.development.json
+appsettings.production.json
+appsettings.Local.json
+*.local.json
+*.secrets.json
+*.user.json
+.env
+.env.*
+mcegold.local.json
+**/mcegold.local.json
+samples/python/sample_state.local.json
+
+# Package/build artifacts
+artifacts/
+artifacts*/
+**/packages/
+*.nupkg
+*.snupkg
+*.dll
+*.exe
+*.pdb
+
+# Test and coverage output
+TestResults/
+coverage/
+*.trx
+
+# Python/runtime caches
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# OS files
+Thumbs.db
+Desktop.ini

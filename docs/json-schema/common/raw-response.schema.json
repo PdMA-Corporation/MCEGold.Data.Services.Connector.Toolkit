@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/common/raw-response.schema.json",
+  "title": "MCEGold CLI Raw Response",
+  "description": "Raw connector response after CLI parsing. Current behavior allows any JSON value or null.",
+  "type": ["object", "array", "string", "number", "integer", "boolean", "null"],
+  "properties": {},
+  "required": [],
+  "additionalProperties": true
+}

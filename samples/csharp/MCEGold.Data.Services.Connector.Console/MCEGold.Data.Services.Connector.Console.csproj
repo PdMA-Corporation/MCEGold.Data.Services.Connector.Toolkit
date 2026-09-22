@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.Development.json" CopyToOutputDirectory="Always" Condition="Exists('appsettings.Development.json')" />
+    <None Include="appsettings.example.json" CopyToOutputDirectory="Never" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MCEGold.Data.Services.Connector" Version="1.2.0" />
+  </ItemGroup>
+
+</Project>

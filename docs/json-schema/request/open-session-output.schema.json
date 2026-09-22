@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/request/open-session-output.schema.json",
+  "title": "Request Open Session Output",
+  "description": "Successful current CLI envelope for request open-session.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "success": { "type": "boolean", "const": true },
+    "command": { "type": "string", "const": "request.open-session" },
+    "timestampUtc": { "type": "string", "format": "date-time" },
+    "data": {
+      "type": "object",
+      "properties": {
+        "statusCode": { "type": "integer" },
+        "sessionId": { "type": "string" }
+      },
+      "required": ["statusCode", "sessionId"],
+      "additionalProperties": false
+    },
+    "fault": { "type": "null" },
+    "raw": { "$ref": "../common/raw-response.schema.json" }
+  },
+  "required": ["schemaVersion", "success", "command", "timestampUtc", "data", "fault", "raw"],
+  "additionalProperties": false
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/publication/close-subscription-input.schema.json",
+  "title": "Publication Close Subscription Input",
+  "description": "Typed JSON pilot input for closing a consumer publication subscription session.",
+  "type": "object",
+  "properties": {
+    "command": {
+      "description": "Dispatch command for this typed input contract.",
+      "type": "string",
+      "const": "CloseSubscription"
+    },
+    "host": {
+      "description": "Absolute HTTPS connector endpoint URI.",
+      "type": "string",
+      "format": "uri"
+    },
+    "authenticationScheme": {
+      "description": "Connector authentication scheme.",
+      "type": "string",
+      "enum": ["Basic", "BasicApi"]
+    },
+    "apiKey": {
+      "description": "API key used with BasicApi authentication.",
+      "type": "string"
+    },
+    "userName": {
+      "description": "Connector user name.",
+      "type": "string"
+    },
+    "password": {
+      "description": "Connector password.",
+      "type": "string"
+    },
+    "sessionId": {
+      "description": "Publication subscription session ID returned by OpenSubscriptionSession.",
+      "type": "string",
+      "minLength": 1
+    },
+    "includeRawResponse": {
+      "description": "Whether to include the raw connector response in command output.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "command",
+    "host",
+    "userName",
+    "password",
+    "sessionId",
+    "includeRawResponse"
+  ],
+  "additionalProperties": false
+}

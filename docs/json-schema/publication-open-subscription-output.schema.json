@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/publication-open-subscription-output.schema.json",
+  "title": "Publication Open Subscription Output",
+  "description": "Successful CLI envelope for publication open-subscription.",
+  "allOf": [
+    { "$ref": "cli-envelope.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "success": { "const": true },
+        "command": { "const": "publication.open-subscription" },
+        "data": {
+          "type": "object",
+          "properties": {
+            "statusCode": { "type": "integer" },
+            "sessionId": { "type": "string" }
+          },
+          "required": ["statusCode", "sessionId"],
+          "additionalProperties": false
+        },
+        "fault": { "type": "null" }
+      }
+    }
+  ]
+}

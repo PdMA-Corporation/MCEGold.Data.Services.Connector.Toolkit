@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/request-remove-response-output.schema.json",
+  "title": "Request Remove Response Output",
+  "description": "Successful CLI envelope for request remove-response.",
+  "allOf": [
+    { "$ref": "cli-envelope.schema.json" },
+    {
+      "type": "object",
+      "properties": {
+        "success": { "const": true },
+        "command": { "const": "request.remove-response" },
+        "data": {
+          "type": "object",
+          "properties": {
+            "statusCode": { "type": "integer" },
+            "sessionId": { "type": "string" },
+            "requestMessageId": { "type": "string" },
+            "removed": { "type": "boolean", "const": true }
+          },
+          "required": ["statusCode", "sessionId", "requestMessageId", "removed"],
+          "additionalProperties": false
+        },
+        "fault": { "type": "null" }
+      }
+    }
+  ]
+}

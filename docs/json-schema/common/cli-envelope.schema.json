@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/common/cli-envelope.schema.json",
+  "title": "MCEGold CLI Envelope",
+  "description": "Common envelope emitted by the current MCEGold connector CLI.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": { "type": "string", "const": "1.0" },
+    "success": { "type": "boolean" },
+    "command": { "type": "string" },
+    "timestampUtc": { "type": "string", "format": "date-time" },
+    "data": { "type": ["object", "null"] },
+    "fault": {
+      "anyOf": [
+        { "$ref": "cli-fault.schema.json" },
+        { "type": "null" }
+      ]
+    },
+    "raw": { "$ref": "raw-response.schema.json" }
+  },
+  "required": ["schemaVersion", "success", "command", "timestampUtc", "data", "fault", "raw"],
+  "additionalProperties": false
+}

@@ -1,0 +1,227 @@
+{
+  "schemaVersion": "1.0",
+  "description": "Current MCEGold Connector CLI command manifest for Consumer Request and Consumer Publication operations.",
+  "commonFaultSchema": "json-schema/common/cli-fault.schema.json",
+  "commands": [
+    {
+      "name": "request preview",
+      "service": "ConsumerRequest",
+      "operation": "PreviewRequestBody",
+      "aliases": [],
+      "options": [
+        { "name": "--input", "type": "file-or-stdin", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--config", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "request.payloadProfile/output.format", "sensitive": false },
+        { "name": "--payload-profile", "type": "string", "required": false, "repeatable": false, "default": null, "configurationFallback": "request.payloadProfile", "allowedValues": ["Full", "Minimal"], "sensitive": false }
+      ],
+      "jsonInput": "json-schema/request/post-request-input.schema.json",
+      "connectorCommandType": null,
+      "connectorOptions": ["PostRequestOptions"],
+      "successOutputSchema": "json-schema/request/preview-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "request open-session",
+      "service": "ConsumerRequest",
+      "operation": "OpenConsumerRequestSession",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false }
+      ],
+      "jsonInput": null,
+      "connectorCommandType": "OpenRequestSession",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "IncludeRawResponse"],
+      "successOutputSchema": "json-schema/request/open-session-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "request post",
+      "service": "ConsumerRequest",
+      "operation": "PostRequest",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--session-id", "type": "string", "format": null, "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--input", "type": "file-or-stdin", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false },
+        { "name": "--payload-profile", "type": "string", "required": false, "repeatable": false, "default": null, "configurationFallback": "request.payloadProfile", "allowedValues": ["Full", "Minimal"], "sensitive": false }
+      ],
+      "jsonInput": "json-schema/request/post-request-input.schema.json",
+      "connectorCommandType": "PostGetSitesRequest|PostGetSegmentsRequest|PostGetAssetsRequest|PostGetMeasurementLocationsRequest|PostGetMeasurementsRequest|PostGetAssessmentsRequest|PostGetAssetSegmentEventsRequest",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "SessionId", "PostRequestOptions", "IncludeRawResponse"],
+      "successOutputSchema": "json-schema/request/post-request-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "request read-response",
+      "service": "ConsumerRequest",
+      "operation": "ReadResponse",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--session-id", "type": "string", "format": null, "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--request-id", "type": "string", "format": null, "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false }
+      ],
+      "jsonInput": null,
+      "connectorCommandType": "ReadResponse",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "SessionId", "MessageId", "IncludeRawResponse"],
+      "successOutputSchema": "json-schema/request/read-response-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "request remove-response",
+      "service": "ConsumerRequest",
+      "operation": "RemoveResponse",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--session-id", "type": "string", "format": null, "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--request-id", "type": "string", "format": null, "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false }
+      ],
+      "jsonInput": null,
+      "connectorCommandType": "RemoveResponse",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "SessionId", "MessageId", "IncludeRawResponse"],
+      "successOutputSchema": "json-schema/request/remove-response-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "request close-session",
+      "service": "ConsumerRequest",
+      "operation": "CloseConsumerRequestSession",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--session-id", "type": "string", "format": null, "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false }
+      ],
+      "jsonInput": null,
+      "connectorCommandType": "CloseRequestSession",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "SessionId", "IncludeRawResponse"],
+      "successOutputSchema": "json-schema/request/close-session-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "publication open-subscription",
+      "service": "ConsumerPublication",
+      "operation": "OpenSubscriptionSession",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false }
+      ],
+      "jsonInput": "json-schema/publication/open-subscription-input.schema.json",
+      "jsonInputMode": "short-json-pilot via ConnectorCommandRunner.RunJsonAsync; existing publication open-subscription --config remains supported",
+      "connectorCommandType": "OpenSubscription",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "PayloadProfile", "IncludeRawResponse"],
+      "successOutputSchema": "json-schema/publication/open-subscription-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "publication read",
+      "service": "ConsumerPublication",
+      "operation": "ReadPublication",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--session-id", "type": "string", "format": null, "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false }
+      ],
+      "jsonInput": null,
+      "connectorCommandType": "ReadPublication",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "SessionId", "IncludeRawResponse"],
+      "successOutputSchema": "json-schema/publication/read-publication-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "publication remove",
+      "service": "ConsumerPublication",
+      "operation": "RemovePublication",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--session-id", "type": "string", "format": null, "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false }
+      ],
+      "jsonInput": null,
+      "connectorCommandType": "RemovePublication",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "SessionId", "IncludeRawResponse"],
+      "successOutputSchema": "json-schema/publication/remove-publication-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "publication close-subscription",
+      "service": "ConsumerPublication",
+      "operation": "CloseSubscriptionSession",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--session-id", "type": "string", "format": null, "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false }
+      ],
+      "jsonInput": "json-schema/publication/close-subscription-input.schema.json",
+      "jsonInputMode": "short-json-pilot via ConnectorCommandRunner.RunJsonAsync; existing publication close-subscription --config --session-id remains supported",
+      "connectorCommandType": "CloseSubscription",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "SessionId", "IncludeRawResponse"],
+      "successOutputSchema": "json-schema/publication/close-subscription-output.schema.json",
+      "successExitCode": 0
+    },
+    {
+      "name": "publication receive",
+      "service": "ConsumerPublication",
+      "operation": "ReceivePublicationWorkflow",
+      "aliases": [],
+      "options": [
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--once", "type": "boolean", "required": true, "repeatable": false, "default": false, "configurationFallback": null, "sensitive": false },
+        { "name": "--remove", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false }
+      ],
+      "jsonInput": null,
+      "connectorCommandType": "OpenSubscription|ReadPublication|RemovePublication|CloseSubscription",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "PayloadProfile", "IncludeRawResponse"],
+      "successOutputSchema": null,
+      "successExitCode": 0
+    },
+    {
+      "name": "request run",
+      "service": "ConsumerRequest",
+      "operation": "RequestWorkflow",
+      "aliases": [],
+      "options": [
+        { "name": "--input", "type": "file-or-stdin", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--config", "type": "file", "required": true, "repeatable": false, "default": null, "configurationFallback": null, "sensitive": false },
+        { "name": "--api-key-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "apiKey", "sensitive": true },
+        { "name": "--password-file", "type": "file", "required": false, "repeatable": false, "default": null, "configurationFallback": "password", "sensitive": true },
+        { "name": "--include-raw", "type": "boolean", "required": false, "repeatable": false, "default": false, "configurationFallback": "output.includeRaw", "sensitive": false },
+        { "name": "--payload-profile", "type": "string", "required": false, "repeatable": false, "default": null, "configurationFallback": "request.payloadProfile", "allowedValues": ["Full", "Minimal"], "sensitive": false }
+      ],
+      "jsonInput": "json-schema/request/post-request-input.schema.json",
+      "connectorCommandType": "OpenRequestSession|PostGet*Request|ReadResponse|RemoveResponse|CloseRequestSession",
+      "connectorOptions": ["Command", "Host", "AuthenticationScheme", "ApiKey", "UserName", "Password", "PostRequestOptions", "MessageId", "IncludeRawResponse"],
+      "successOutputSchema": null,
+      "successExitCode": 0
+    }
+  ]
+}

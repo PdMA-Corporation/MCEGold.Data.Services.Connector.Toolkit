@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/mcegold/schemas/publication/read-publication-input.schema.json",
+  "title": "Publication Read Input",
+  "description": "Short JSON input for reading a publication from a consumer publication subscription session.",
+  "type": "object",
+  "properties": {
+    "command": {
+      "description": "Dispatch command for this short JSON input contract.",
+      "type": "string",
+      "const": "ReadPublication"
+    },
+    "host": {
+      "description": "Absolute HTTPS connector endpoint URI.",
+      "type": "string",
+      "format": "uri"
+    },
+    "authenticationScheme": {
+      "description": "Connector authentication scheme.",
+      "type": "string",
+      "enum": ["Basic", "BasicApi"]
+    },
+    "apiKey": {
+      "description": "API key used with BasicApi authentication.",
+      "type": "string"
+    },
+    "userName": {
+      "description": "Connector user name.",
+      "type": "string"
+    },
+    "password": {
+      "description": "Connector password.",
+      "type": "string"
+    },
+    "sessionId": {
+      "description": "Publication subscription session ID returned by OpenSubscription.",
+      "type": "string",
+      "minLength": 1
+    },
+    "includeRawResponse": {
+      "description": "Whether to include the raw connector response in command output.",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "command",
+    "host",
+    "userName",
+    "password",
+    "sessionId",
+    "includeRawResponse"
+  ],
+  "additionalProperties": false
+}
