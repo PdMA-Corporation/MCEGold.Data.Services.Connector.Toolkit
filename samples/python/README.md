@@ -136,11 +136,23 @@ python .\samples\python\08_remove_response.py
 python .\samples\python\09_close_request_session.py
 ```
 
-`06_post_request.py` defaults to `payloads/requests/get-sites.example.json`. The short-form payload is the authoritative source of the request type and mirrors how long-form CCOM/OIIE BODs determine the request interface from the request document itself. Override the payload when needed:
+`06_post_request.py` defaults to `payloads/requests/get-sites.example.json`. The short-form payload is the authoritative source of the request type and mirrors how long-form CCOM/OIIE BODs determine the request interface from the request document itself. Override the payload with a file when needed:
 
 ```powershell
 python .\samples\python\06_post_request.py --input <payload-path>
 ```
+
+Use `--input -` to read request JSON from stdin:
+
+```bash
+printf '%s\n' '{
+  "requestType": "GetSites",
+  "payloadProfile": "Full",
+  "maxItems": 25
+}' | python3 samples/python/06_post_request.py --input -
+```
+
+Literal inline JSON passed directly as the `--input` argument is not supported. Use `--input <payload-path>` or pipe JSON with `--input -`. The Python sample forwards the request input to the CLI and does not construct the full MIMOSA BOD itself.
 
 Request payload profile can also be supplied as a CLI override. This wins over JSON and config defaults:
 

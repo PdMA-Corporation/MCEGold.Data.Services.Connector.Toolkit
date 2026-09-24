@@ -42,7 +42,13 @@ def main() -> int:
             raise StateStoreError(
                 "No request session ID is saved. Run 05_open_request_session.py first."
             )
-        payload_path = resolve_request_payload(arguments.input)
+        use_stdin = arguments.input == Path("-")
+        input_value = "-"
+        stdin_text = None
+        if use_stdin:
+            stdin_text = sys.stdin.read()
+        else:
+            input_value = str(resolve_request_payload(arguments.input))
 
         cli_command = locate_cli(arguments.cli)
         command = [
@@ -53,14 +59,14 @@ def main() -> int:
             "--session-id",
             session_id,
             "--input",
-            str(payload_path),
+            input_value,
             "--output",
             "json",
         ]
         if arguments.payload_profile:
             command.extend(["--payload-profile", arguments.payload_profile])
         append_include_raw(command, arguments.include_raw)
-        result = run_cli(cli_command, command, DEFAULT_TIMEOUT_SECONDS)
+        result = run_cli(cli_command, command, DEFAULT_TIMEOUT_SECONDS, stdin_text)
         print_full_envelope(result.envelope)
         if not result.envelope["success"]:
             return failure_exit_code(result)
@@ -115,7 +121,7 @@ def _parse_arguments() -> argparse.Namespace:
         "--input",
         type=Path,
         help=(
-            "Request payload path "
+            "Request payload path, or - to read JSON from stdin "
             "(default: payloads/requests/get-sites.example.json)."
         ),
     )

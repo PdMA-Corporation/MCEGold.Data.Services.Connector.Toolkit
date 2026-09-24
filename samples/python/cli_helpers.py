@@ -268,6 +268,7 @@ def run_cli(
     command_prefix: Sequence[str],
     arguments: Sequence[str],
     timeout_seconds: int,
+    stdin_text: str | None = None,
 ) -> CommandResult:
     command = [*command_prefix, *arguments]
     try:
@@ -277,6 +278,7 @@ def run_cli(
             capture_output=True,
             text=True,
             encoding="utf-8",
+            input=stdin_text,
             check=False,
             timeout=timeout_seconds,
         )
