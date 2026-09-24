@@ -66,7 +66,12 @@ def main() -> int:
         if arguments.payload_profile:
             command.extend(["--payload-profile", arguments.payload_profile])
         append_include_raw(command, arguments.include_raw)
-        result = run_cli(cli_command, command, DEFAULT_TIMEOUT_SECONDS, stdin_text)
+        result = run_cli(
+            cli_command,
+            command,
+            DEFAULT_TIMEOUT_SECONDS,
+            stdin_text=stdin_text,
+        )
         print_full_envelope(result.envelope)
         if not result.envelope["success"]:
             return failure_exit_code(result)

@@ -5,12 +5,9 @@
   "userName": "",
   "password": "",
   "publication": {
-    "channel": "/YourOrganization/Publication",
-    "payloadProfile": "Full"
+    "channel": ""
   },
   "request": {
-    "channel": "/YourOrganization/Request",
-    "readResponse": true,
-    "removeResponseOnSuccess": true
+    "channel": ""
   }
 }
