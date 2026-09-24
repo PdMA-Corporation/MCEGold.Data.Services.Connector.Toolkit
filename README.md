@@ -115,6 +115,16 @@ dotnet build .\samples\csharp\MCEGold.Data.Services.Connector.Console\MCEGold.Da
 
 Python samples in `samples/python/` call the CLI as a subprocess and parse its JSON output. They do not store credentials. Demo session state is written to the ignored `samples/python/sample_state.local.json`.
 
+## Linux Python Package
+
+Create the Linux Python Toolkit package from a Linux or WSL environment with the .NET SDK available:
+
+```bash
+bash ./scripts/package-python-linux-x64.sh
+```
+
+The script publishes the CLI as a self-contained `linux-x64` executable, stages the Python samples, config template, and request payload examples, then writes `artifacts/mcegold-python-linux-x64-v1.0.0.tar.gz`. The archive preserves the CLI executable bit and validates a clean extraction, so end users should not need to run `chmod +x`.
+
 ## Validation Utilities
 
 - `validation/MCEGold.Data.Services.Connector.PackageConsumer` validates package consumption from NuGet.
