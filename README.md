@@ -1,145 +1,87 @@
 # MCEGold Data Services Connector Toolkit
 
-Public automation tooling, samples, configuration templates, payload templates, and validation utilities for the `MCEGold.Data.Services.Connector` NuGet package.
+Public tools, samples, configuration templates, and request payloads for learning and using the `MCEGold.Data.Services.Connector` package.
 
-The Connector package is the runtime library. The Toolkit is the public companion workspace for learning and validating package usage without referencing internal source projects. Active SDK-style samples consume `MCEGold.Data.Services.Connector` version `1.2.0` from NuGet.
+![MCEGold Data Services Connector Toolkit overview](docs/images/mcegold-connector-toolkit-overview.png)
 
-## Prerequisites
+## Choose Your Path
 
-- .NET 8 SDK for the CLI, developer console, and validation projects.
-- Python 3.10 or later for the Python wrapper samples.
-- Access to an MCEGold Data Services Connector endpoint only for live request/publication workflows.
+### Windows Developers
 
-Offline request preview does not require credentials or a live service.
+Use the ready-to-run, self-contained C# Console when you want an interactive Windows workflow without installing .NET separately.
 
-## Recommended First Run
+1. Download `mcegold-console-win-x64-v1.0.0.zip` from [GitHub Releases](https://github.com/PdMA-Corporation/temp-MCEGold.Data.Services.Connector.Toolkit/releases/latest).
+2. Extract it, copy `appsettings.example.json` to `appsettings.Development.json`, and enter your connection values.
+3. Run `MCEGold.Data.Services.Connector.Console.exe`.
 
-Build the automation CLI and run an offline preview:
+See the [Windows Console guide](docs/windows-console.md).
 
-```powershell
-dotnet restore .\samples\csharp\MCEGold.Data.Services.Connector.Cli\MCEGold.Data.Services.Connector.Cli.csproj
-dotnet build .\samples\csharp\MCEGold.Data.Services.Connector.Cli\MCEGold.Data.Services.Connector.Cli.csproj --no-restore
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- version
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- request preview --input .\payloads\requests\get-sites.example.json
-```
+### Linux Developers
 
-Use `--input -` to read a request JSON document from stdin.
+Use the self-contained Python + Connector CLI package when you want scriptable examples and an explicit staged lifecycle.
 
-## Configuration
+1. Download `mcegold-python-linux-x64-v1.0.0.tar.gz` from [GitHub Releases](https://github.com/PdMA-Corporation/temp-MCEGold.Data.Services.Connector.Toolkit/releases/latest).
+2. Extract it, copy `configs/connector.config.example.json` to `configs/connector.config.development.json`, and enter your connection values.
+3. Run the CLI or follow the numbered Python samples.
 
-The canonical public template is `configs/connector.config.example.json`.
+See the [Linux / Python guide](docs/linux-python.md).
 
-For live workflows, copy it to the ignored local development file and fill in local values:
+### Build from Source
 
-```powershell
-copy .\configs\connector.config.example.json .\configs\connector.config.development.json
-```
+The repository contains the C# Console, Connector CLI, Python samples, WinForms samples, documentation, JSON schemas, and request payloads. Install the .NET 8 SDK, then follow [Build from Source](docs/source-development.md).
 
-Secrets may also be supplied with environment variables or secret files:
+### WinForms Samples
 
-- `MCEGOLD_HOST`
-- `MCEGOLD_AUTH_SCHEME`
-- `MCEGOLD_API_KEY`
-- `MCEGOLD_USERNAME`
-- `MCEGOLD_PASSWORD`
-- `--api-key-file <path>`
-- `--password-file <path>`
+The WinForms projects are .NET Framework source/reference samples intended for Visual Studio. They are not self-contained release packages. See [WinForms Samples](docs/legacy-winforms.md).
 
-Secret-file values override environment variables, which override the JSON config file. `config show` requires `--redact`; there is no unredacted display mode.
+## Supported Workflows
 
-## CLI Workflows
+- **Request / Response:** open a request session, post a request, read and remove its response, and close the session.
+- **Publication / Subscription:** open a subscription, read and remove a publication, and close the subscription.
+- **Automation:** call the Connector CLI directly from PowerShell, Python, shell scripts, or another subprocess-based client.
 
-The CLI project is `samples/csharp/MCEGold.Data.Services.Connector.Cli`.
+The Console provides interactive workflows. The Python samples and staged CLI commands expose each lifecycle operation explicitly; atomic CLI convenience commands are also available.
 
-Supported commands include:
+## Quick Configuration
 
-- `version`
-- `config validate`
-- `config show`
-- `request preview`
-- `request run`
-- `request open-session`
-- `request post`
-- `request read-response`
-- `request remove-response`
-- `request close-session`
-- `publication receive`
-- `publication open-subscription`
-- `publication read`
-- `publication remove`
-- `publication close-subscription`
+CLI and Python users copy `configs/connector.config.example.json` to `configs/connector.config.development.json`. Console users copy `appsettings.example.json` to `appsettings.Development.json` in the package or Console project folder.
 
-`request preview` is offline. All request/session and publication receive/read/remove/close commands that contact a service require local configuration and credentials.
+Set the HTTPS connector `host`, authentication scheme, and credentials in the local development file. Configure publication or request channels only when your environment requires them. See [Configuration](docs/configuration.md) for the supported shapes, precedence rules, and secret-handling guidance.
 
-The CLI emits structured JSON envelopes. Failure envelopes use a normalized top-level `fault` object. Raw service responses are omitted unless `--include-raw` is explicitly supplied.
+## Documentation
 
-## Request/Response Workflow
+| Need | Documentation |
+|---|---|
+| Pick a first path | [Getting Started](docs/getting-started.md) |
+| Run the Windows package | [Windows Console](docs/windows-console.md) |
+| Run the Linux package and Python samples | [Linux / Python](docs/linux-python.md) |
+| Build the projects | [Build from Source](docs/source-development.md) |
+| Open the .NET Framework samples | [WinForms Samples](docs/legacy-winforms.md) |
+| Configure the Toolkit | [Configuration](docs/configuration.md) |
+| Find a CLI command or option | [CLI Reference](docs/cli-reference.md) |
+| Script the CLI and parse results | [Calling the Connector CLI](docs/calling-mcegold-cli.md) |
+| Follow the staged request lifecycle | [Request Workflow](docs/request-workflow.md) |
+| Follow the staged publication lifecycle | [Publication Workflow](docs/publication-workflow.md) |
+| Choose a request type and payload | [Request Types](docs/request-types.md) |
+| Parse the CLI result envelope | [CLI JSON Contract](docs/json-contract.md) |
+| Inspect detailed input/output shapes | [Advanced CLI JSON Shapes](docs/connector-cli-json-shapes.md) |
+| Compare packages and source archives | [Releases](docs/releases.md) |
+| Resolve common setup issues | [Troubleshooting](docs/troubleshooting.md) |
 
-Request payload examples live under `payloads/requests/`. The short-form payloads support `requestType`, optional `payloadProfile`, paging/limit fields, and type-specific filters.
+## Repository Structure
 
-For explicit session ownership:
+- `configs/` - public Connector CLI and Python configuration template.
+- `docs/` - setup guides, command and JSON references, and JSON schemas.
+- `payloads/requests/` - short-form request payload examples.
+- `samples/csharp/MCEGold.Data.Services.Connector.Console/` - interactive C# Console.
+- `samples/csharp/MCEGold.Data.Services.Connector.Cli/` - automation CLI used by Python and shell callers.
+- `samples/python/` - numbered Python wrappers for the staged workflows.
+- `samples/csharp/MCEGold.Request.Consumer/` and `samples/csharp/MCEGold.Publication.Consumer/` - WinForms source samples.
 
-```powershell
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- request open-session --config .\configs\connector.config.development.json
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- request post --config .\configs\connector.config.development.json --session-id <session-id> --input .\payloads\requests\get-sites.example.json
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- request read-response --config .\configs\connector.config.development.json --session-id <session-id> --request-id <message-id>
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- request remove-response --config .\configs\connector.config.development.json --session-id <session-id> --request-id <message-id>
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- request close-session --config .\configs\connector.config.development.json --session-id <session-id>
-```
+## Security
 
-`request run` is a convenience workflow for simple end-to-end calls.
-
-## Publication Workflow
-
-For explicit subscription ownership:
-
-```powershell
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- publication open-subscription --config .\configs\connector.config.development.json
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- publication read --config .\configs\connector.config.development.json --session-id <session-id>
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- publication remove --config .\configs\connector.config.development.json --session-id <session-id>
-dotnet run --project .\samples\csharp\MCEGold.Data.Services.Connector.Cli -- publication close-subscription --config .\configs\connector.config.development.json --session-id <session-id>
-```
-
-`publication receive` is a convenience workflow for receive/remove loops.
-
-## Console Sample
-
-`samples/csharp/MCEGold.Data.Services.Connector.Console` is an interactive developer console. Its public template is `appsettings.example.json`; copy it to the ignored `appsettings.Development.json` for local live use.
-
-```powershell
-dotnet restore .\samples\csharp\MCEGold.Data.Services.Connector.Console\MCEGold.Data.Services.Connector.Console.csproj
-dotnet build .\samples\csharp\MCEGold.Data.Services.Connector.Console\MCEGold.Data.Services.Connector.Console.csproj --no-restore
-```
-
-## Python Wrapper Samples
-
-Python samples in `samples/python/` call the CLI as a subprocess and parse its JSON output. They do not store credentials. Demo session state is written to the ignored `samples/python/sample_state.local.json`.
-
-## Linux Python Package
-
-Create the Linux Python Toolkit package from a Linux or WSL environment with the .NET SDK available:
-
-```bash
-bash ./scripts/package-python-linux-x64.sh
-```
-
-The script publishes the CLI as a self-contained `linux-x64` executable, stages the Python samples, config template, and request payload examples, then writes `artifacts/mcegold-python-linux-x64-v1.0.0.tar.gz`. The archive preserves the CLI executable bit and validates a clean extraction, so end users should not need to run `chmod +x`.
-
-## Validation Utilities
-
-- `validation/MCEGold.Data.Services.Connector.PackageConsumer` validates package consumption from NuGet.
-- `validation/MCEGold.Data.Services.Connector.RuntimeSmoke` is a live-service smoke test and must only be run with an intentionally prepared local config.
-- `scripts/validate-connector-package.ps1` runs package validation.
-- `scripts/validate-connector-runtime.ps1` runs live runtime validation and should not be used for offline public-candidate checks.
-
-## Legacy WinForms Samples
-
-`samples/csharp/MCEGold.Request.Consumer` and `samples/csharp/MCEGold.Publication.Consumer` are legacy .NET Framework WinForms samples. They retain `packages.config` for normal package restore, but committed package binary caches are intentionally excluded from this public candidate.
-
-## Related Projects
-
-MCEGold Discovery Portal and MCEGold Discovery PublicationCollector are separate companion applications that may consume Connector data. This Toolkit focuses on Connector package usage, CLI automation, sample payloads, and validation utilities.
+Do not commit development config files, credentials, tokens, raw service responses, or local state. Public templates contain placeholders only. Use ignored local files such as `configs/connector.config.development.json` and `appsettings.Development.json`, or supply secrets through approved environment variables or secret files.
 
 ## License
 
-MIT. See `LICENSE`.
+MIT. See [LICENSE](LICENSE).

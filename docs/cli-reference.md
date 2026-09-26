@@ -2,6 +2,8 @@
 
 The Windows executable name is `MCEGold.Data.Services.Connector.Cli.exe`. Commands and options use lowercase kebab-case. JSON is the default output format.
 
+Top-level commands are `version`, `run`, `config`, `request`, and `publication`. Use [Calling the Connector CLI](calling-mcegold-cli.md) for subprocess integration and the [CLI JSON Contract](json-contract.md) for envelope and exit-code details.
+
 ## Global output option
 
 ```text
@@ -54,11 +56,26 @@ Returns the CLI assembly version and loaded connector assembly version.
 MCEGold.Data.Services.Connector.Cli.exe version
 ```
 
+## `MCEGold.Data.Services.Connector.Cli.exe run`
+
+Runs one operation-specific typed JSON command through the connector command runner. This advanced path accepts Consumer Request and Consumer Publication command shapes from a file or stdin:
+
+```powershell
+MCEGold.Data.Services.Connector.Cli.exe run --input samples/json/request/open-request-session-input.example.json
+Get-Content .\command.json | MCEGold.Data.Services.Connector.Cli.exe run --input -
+```
+
+```text
+--input <path|->            Required
+```
+
+See the examples under `samples/json/`, schemas under `docs/json-schema/`, and [Advanced CLI JSON Shapes](connector-cli-json-shapes.md) for detailed mappings. Most automation should use the named `request` and `publication` commands below.
+
 ## `MCEGold.Data.Services.Connector.Cli.exe config validate`
 
 Loads a configuration file, applies `MCEGOLD_*` environment overrides, and validates required non-secret settings. It reports whether secrets are configured without printing them.
 
-The Toolkit sample configuration uses predefined publication and request services and does not require topic settings. `request.payloadProfile` is optional and accepts `Full` or `Minimal`; omit it to use connector default `Full` behavior without serializing `payloadProfile`. Current publication workflows validate and carry `publication.payloadProfile`, but the RapidRedPanda subscription adapter does not yet expose a transport `userArea` for it.
+The Toolkit sample configuration keeps publication and request channels blank by default. `request.payloadProfile` is optional and accepts `Full` or `Minimal`; omit it to use connector default `Full` behavior without serializing `payloadProfile`.
 
 ```powershell
 MCEGold.Data.Services.Connector.Cli.exe config validate --config configs/connector.config.development.json

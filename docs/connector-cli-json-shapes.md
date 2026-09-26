@@ -1,8 +1,10 @@
-# MCEGold Connector CLI JSON Shapes
+# Advanced Reference: MCEGold Connector CLI JSON Shapes
 
 ## 1. Purpose And Scope
 
-This document is the reference for JSON inputs consumed and JSON outputs produced by the current MCEGold Data Services Connector CLI. It covers only the existing Consumer Request Service and Consumer Publication Service command surfaces:
+This advanced reference documents the detailed JSON inputs consumed and outputs produced by the current MCEGold Data Services Connector CLI. Start with the public [CLI JSON Contract](json-contract.md) when you only need the stable envelope and stream rules.
+
+It covers only the existing Consumer Request Service and Consumer Publication Service command surfaces:
 
 - Consumer Request: `OpenConsumerRequestSession`, `PostRequest`, `ReadResponse`, `RemoveResponse`, `CloseConsumerRequestSession`
 - Consumer Publication: `OpenSubscriptionSession`, `ReadPublication`, `RemovePublication`, `CloseSubscriptionSession`

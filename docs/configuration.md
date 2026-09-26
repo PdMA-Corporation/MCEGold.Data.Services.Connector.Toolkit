@@ -1,12 +1,33 @@
-# CLI Configuration
+# Configuration
 
-Copy the committed example to the ignored development config:
+The Toolkit has two public configuration templates:
+
+- CLI and Python package: `configs/connector.config.example.json`
+- Windows Console package: `appsettings.example.json`
+
+Copy the matching example file to an ignored development file before running live workflows.
+
+## CLI / Python Configuration
+
+Template:
+
+```text
+configs/connector.config.example.json
+```
+
+Local development file:
+
+```text
+configs/connector.config.development.json
+```
+
+Create it from the repository root or extracted Linux package root:
 
 ```powershell
 copy .\configs\connector.config.example.json .\configs\connector.config.development.json
 ```
 
-Edit `configs/connector.config.development.json` before running network commands. The example contains placeholders and must not be used for a connection.
+Example shape:
 
 ```json
 {
@@ -16,25 +37,24 @@ Edit `configs/connector.config.development.json` before running network commands
   "userName": "",
   "password": "",
   "publication": {
-    "channel": "/YourOrganization/Publication",
-    "payloadProfile": "Full"
+    "channel": ""
   },
   "request": {
-    "channel": "/YourOrganization/Request",
-    "readResponse": true,
-    "removeResponseOnSuccess": true
+    "channel": ""
   }
 }
 ```
 
-## Precedence
+`publication.channel` and `request.channel` are blank by default. Configure a channel only when your environment requires one.
+
+### CLI Precedence
 
 Values are resolved in this order, highest priority first:
 
 1. `--api-key-file` and `--password-file`.
 2. `MCEGOLD_*` environment variables.
 3. The file supplied with `--config`.
-4. Safe built-in defaults.
+4. Built-in defaults.
 
 Supported environment variables:
 
@@ -48,28 +68,55 @@ MCEGOLD_PASSWORD
 
 `authenticationScheme` accepts `BasicApi` or `Basic`. The host must be an absolute HTTPS URI.
 
-`request.payloadProfile` is optional and accepts `Full` or `Minimal`. If it is omitted, no request payload profile is injected; the connector behaves as `Full` by default without serializing `payloadProfile`. Request payload profile precedence is CLI `--payload-profile`, then short-form JSON `payloadProfile`, then `request.payloadProfile`, then connector default behavior. The current RapidRedPanda subscription adapter call does not expose a schema-safe subscription `userArea`, so the Toolkit validates and carries `publication.payloadProfile` but does not yet serialize it into the open-subscription transport request.
+`request.payloadProfile` is an advanced optional config default for `request preview`, `request post`, and `request run`. It is intentionally omitted from the public beginner template. Use short-form JSON `payloadProfile` or `--payload-profile` when you need an explicit request payload profile.
 
-The Python trial uses `configs/connector.config.development.json`, created from `configs/connector.config.example.json`. It includes predefined publication and request channel labels and intentionally omits topic settings. The current MCEGold Connector does not require users to configure topics. Generic OIIE server support and dynamic topic discovery are future possibilities, not current Toolkit behavior.
+`request.readResponse` and `request.removeResponseOnSuccess` are advanced optional settings used only by the atomic `request run` convenience command. They default to `true` when omitted and are intentionally omitted from the public beginner template.
+
+## Console Configuration
+
+Template:
+
+```text
+appsettings.example.json
+```
+
+Local development file:
+
+```text
+appsettings.Development.json
+```
+
+Create it in the extracted Windows Console package folder or the Console source folder:
+
+```powershell
+Copy-Item appsettings.example.json appsettings.Development.json
+```
+
+Example shape:
+
+```json
+{
+  "host": "https://your-server/connector/1.0",
+  "authenticationScheme": "BasicApi",
+  "apiKey": "",
+  "userName": "",
+  "password": "",
+  "includeRawResponse": false
+}
+```
+
+The Console reads `appsettings.Development.json` for interactive mode. It first checks the executable folder and then the current working directory.
+
+Optional Console settings such as request presets, publication channel IDs, request channel IDs, and `consoleOutput.showFullCommandResult` have code defaults and are not required in the beginner template.
 
 ## Secrets
 
-Environment variables or mounted secret files are preferred. Command-line API-key/password values are deliberately unsupported because process listings and shell history can expose them.
+Do not commit local development configs, credentials, tokens, raw service responses, secret files, or environment dumps.
+
+For CLI and Python workflows, environment variables or mounted secret files are preferred. Command-line API-key/password values are deliberately unsupported because process listings and shell history can expose them.
 
 `config show` requires `--redact` and has no unredacted mode. API key, username, and password values are never returned. `config validate` returns only configured/not-configured booleans.
 
-Do not copy `connector.config.development.json`, `appsettings.Development.json`, secret files, or environment dumps into release output.
+## Raw Output
 
-## Request behavior
-
-- `request.readResponse`: when true, `request run` performs one connector read after posting.
-- `request.removeResponseOnSuccess`: when true, a successfully read response is removed before cleanup.
-- `request.payloadProfile`: optional default for `request run`, staged `request post`, and `request preview` when `--config` is supplied. Use `Minimal` only when the server and workflow expect reduced payloads.
-
-The current connector read call controls server-side waiting behavior. Configurable polling and timeout policy are deferred until the connector exposes cancellation/timeout controls.
-
-## Output behavior
-
-`output.format` accepts `json`, `json-pretty`, `text`, or `payload`. A command-line `--output` value overrides it.
-
-`output.includeRaw` adds the underlying connector response when available. Raw output may contain service-specific or proprietary data and should be handled as sensitive diagnostic material.
+`includeRawResponse`, `--include-raw`, and `output.includeRaw` style options are for troubleshooting. Raw output may contain service-specific or proprietary data and should be handled as sensitive diagnostic material.

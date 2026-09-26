@@ -6,6 +6,8 @@
 
 Do not reimplement connector logic, authentication, HTTP calls, session internals, or BOD mapping in scripts.
 
+Use the [CLI Reference](cli-reference.md) for the complete command and option list and the [CLI JSON Contract](json-contract.md) for the stable envelope, exit codes, and stream rules.
+
 ## Prerequisites
 
 - A built or deployed `MCEGold.Data.Services.Connector.Cli.exe`.
