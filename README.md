@@ -1,8 +1,10 @@
 # MCEGold Data Services Connector Toolkit
 
-Public tools, samples, configuration templates, and request payloads for learning and using the `MCEGold.Data.Services.Connector` package.
+This repository contains the public MCEGold Data Services Connector Toolkit: the CLI, samples, schemas, payloads, and public developer documentation. `MCEGold.Data.Services.Connector` is a separately distributed proprietary NuGet package; its public Direct API and Command API are documented in the [Connector Coding Guide](docs/MCEGold-Data-Services-Connector-Coding-Guide.md).
 
 ![MCEGold Data Services Connector Toolkit overview](docs/images/mcegold-connector-toolkit-overview.png)
+
+> **Note:** The `.NET Connector Library` shown in the overview refers to the separately distributed proprietary `MCEGold.Data.Services.Connector` NuGet package. It is not included in this public Toolkit repository.
 
 ## Choose Your Path
 
@@ -64,8 +66,7 @@ Set the HTTPS connector `host`, authentication scheme, and credentials in the lo
 | Follow the staged request lifecycle | [Request Workflow](docs/request-workflow.md) |
 | Follow the staged publication lifecycle | [Publication Workflow](docs/publication-workflow.md) |
 | Choose a request type and payload | [Request Types](docs/request-types.md) |
-| Parse the CLI result envelope | [CLI JSON Contract](docs/json-contract.md) |
-| Inspect detailed input/output shapes | [Advanced CLI JSON Shapes](docs/connector-cli-json-shapes.md) |
+| Parse the CLI result envelope | [CLI JSON Output Contract](docs/json-contract.md) |
 | Compare packages and source archives | [Releases](docs/releases.md) |
 | Resolve common setup issues | [Troubleshooting](docs/troubleshooting.md) |
 

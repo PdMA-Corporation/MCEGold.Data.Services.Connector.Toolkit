@@ -1,8 +1,8 @@
-# CLI JSON Contract
+# CLI JSON Output Contract
 
 JSON modes write exactly one document to stdout. The v1 envelope is stable across successful commands, validation failures, configuration failures, transport failures, authentication failures, remote failures, and unexpected errors.
 
-See the [CLI Reference](cli-reference.md) for commands and options. For implementation-level input and output mappings, use the [Advanced CLI JSON Shapes](connector-cli-json-shapes.md) reference.
+See the [CLI Reference](cli-reference.md) for commands and options and [Request Types](request-types.md) for request-input contracts.
 
 ## Success
 

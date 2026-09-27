@@ -6,7 +6,7 @@
 
 Do not reimplement connector logic, authentication, HTTP calls, session internals, or BOD mapping in scripts.
 
-Use the [CLI Reference](cli-reference.md) for the complete command and option list and the [CLI JSON Contract](json-contract.md) for the stable envelope, exit codes, and stream rules.
+Use the [CLI Reference](cli-reference.md) for the complete command and option list and the [CLI JSON Output Contract](json-contract.md) for the stable envelope, exit codes, and stream rules.
 
 ## Prerequisites
 

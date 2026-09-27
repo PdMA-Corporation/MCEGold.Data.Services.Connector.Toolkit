@@ -2,7 +2,7 @@
 
 The Windows executable name is `MCEGold.Data.Services.Connector.Cli.exe`. Commands and options use lowercase kebab-case. JSON is the default output format.
 
-Top-level commands are `version`, `run`, `config`, `request`, and `publication`. Use [Calling the Connector CLI](calling-mcegold-cli.md) for subprocess integration and the [CLI JSON Contract](json-contract.md) for envelope and exit-code details.
+Top-level commands are `version`, `run`, `config`, `request`, and `publication`. Use [Calling the Connector CLI](calling-mcegold-cli.md) for subprocess integration and the [CLI JSON Output Contract](json-contract.md) for envelope and exit-code details.
 
 ## Global output option
 
@@ -69,7 +69,7 @@ Get-Content .\command.json | MCEGold.Data.Services.Connector.Cli.exe run --input
 --input <path|->            Required
 ```
 
-See the examples under `samples/json/`, schemas under `docs/json-schema/`, and [Advanced CLI JSON Shapes](connector-cli-json-shapes.md) for detailed mappings. Most automation should use the named `request` and `publication` commands below.
+See the examples under `samples/json/`, schemas under `docs/json-schema/`, [Request Types](request-types.md) for request-input contracts, and the [CLI JSON Output Contract](json-contract.md) for result-envelope details. Most automation should use the named `request` and `publication` commands below.
 
 ## `MCEGold.Data.Services.Connector.Cli.exe config validate`
 

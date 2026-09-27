@@ -1101,7 +1101,7 @@ Related Toolkit documentation:
 - [Request Workflow](request-workflow.md)
 - [Publication Workflow](publication-workflow.md)
 - [CLI Reference](cli-reference.md)
-- [CLI JSON Contract](json-contract.md)
+- [CLI JSON Output Contract](json-contract.md)
 
 ## API Quick Reference
 
