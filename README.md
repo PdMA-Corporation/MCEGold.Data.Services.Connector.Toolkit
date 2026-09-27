@@ -58,6 +58,7 @@ Set the HTTPS connector `host`, authentication scheme, and credentials in the lo
 | Build the projects | [Build from Source](docs/source-development.md) |
 | Open the .NET Framework samples | [WinForms Samples](docs/legacy-winforms.md) |
 | Configure the Toolkit | [Configuration](docs/configuration.md) |
+| Integrate directly with the NuGet library | [Connector Coding Guide](docs/MCEGold-Data-Services-Connector-Coding-Guide.md) |
 | Find a CLI command or option | [CLI Reference](docs/cli-reference.md) |
 | Script the CLI and parse results | [Calling the Connector CLI](docs/calling-mcegold-cli.md) |
 | Follow the staged request lifecycle | [Request Workflow](docs/request-workflow.md) |
