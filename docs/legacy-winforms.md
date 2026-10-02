@@ -13,7 +13,7 @@ Use them when you specifically want to work with the .NET Framework 4.7.2 WinFor
 
 Windows users who want to try the WinForms samples should download:
 
-[`mcegold-windows-samples-v1.0.0.zip`](https://github.com/PdMA-Corporation/temp-MCEGold.Data.Services.Connector.Toolkit/releases/download/v1.0.0/mcegold-windows-samples-v1.0.0.zip)
+mcegold-windows-samples-v1.0.0.zip
 
 This focused package contains:
 
