@@ -11,7 +11,9 @@ Use them when you need to inspect the older .NET Framework sample UI behavior or
 
 ## How To Use
 
-Open the projects in Visual Studio and restore packages through the normal Visual Studio/NuGet workflow. A separate .NET Framework developer pack may be required if Visual Studio does not already provide the 4.7.2 targeting pack.
+Open the solution in Visual Studio, select **Build > Clean Solution**, then select **Build > Rebuild Solution**. After the rebuild completes, run the sample.
+
+If Visual Studio reports missing NuGet packages, restore NuGet packages for the solution and rebuild. A separate .NET Framework developer pack may be required if Visual Studio does not already provide the 4.7.2 targeting pack.
 
 These projects retain legacy project structure and package-restore behavior. They are not intended for the Linux/Python package or the Windows Console package.
 

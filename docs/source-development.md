@@ -11,6 +11,10 @@ Use this page when building or running the Toolkit directly from the repository.
 
 Offline request preview does not require credentials or a live service.
 
+## Windows Source ZIP Extraction
+
+When downloading the GitHub source ZIP on Windows, extract it to a reasonably short path, such as `C:\MCEGoldToolkit` or `F:\MCEGoldToolkit`. Avoid creating an extra deeply nested directory structure when extracting; very long paths can cause Visual Studio build or cache errors.
+
 ## Project Locations
 
 - CLI: `samples/csharp/MCEGold.Data.Services.Connector.Cli`
