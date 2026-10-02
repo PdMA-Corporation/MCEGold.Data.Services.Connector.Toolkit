@@ -35,6 +35,11 @@
   <ItemGroup>
     <Reference Include="MCEGold.Data.Services.Connector">
       <HintPath>packages\MCEGold.Data.Services.Connector.1.2.0\lib\netstandard2.0\MCEGold.Data.Services.Connector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RapidRedPanda.ISBM.ClientAdapter">
+      <HintPath>packages\RapidRedPanda.ISBM.ClientAdapter.2.0.2.4\lib\netstandard2.0\RapidRedPanda.ISBM.ClientAdapter.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
